@@ -1,6 +1,6 @@
 // Import required components
-const { MajorColorNames, MinorColorNames } = require('./color_codes');
-const { getColorFromPairNumber } = require('./color_pair_utils');
+const { MajorColorNames, MinorColorNames } = require('./colorCoder');
+const { getColorFromPairNumber } = require('./colorPair');
 
 // Function to print color code reference
 function printColorCodeReference() {
