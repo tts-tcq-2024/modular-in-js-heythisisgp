@@ -1,10 +1,13 @@
-function ColorPair(){
-    this.majorColor;
-    this.minorColor;
-}
+const majorColorMap = new Map(MajorColorNames.map((color, index) => [color, index]));
+const minorColorMap = new Map(MinorColorNames.map((color, index) => [color, index]));
 
-ColorPair.prototype.toString=function(){
-    return `MajorColor:${this.majorColor},MinorColr:${this.minorColor}`;
-}
+function getPairNumberFromColor(pair) {
+    const majorIndex = majorColorMap.get(pair.majorColor);
+    const minorIndex = minorColorMap.get(pair.minorColor);
 
-module.exports = ColorPair;
+    if (majorIndex === undefined || minorIndex === undefined) {
+        throw `Unknown Colors:${pair.toString()}`;
+    }
+
+    return (majorIndex * MinorColorNames.length) + (minorIndex + 1);
+}
