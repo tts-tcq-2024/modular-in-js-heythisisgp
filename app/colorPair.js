@@ -1,5 +1,5 @@
 // Import necessary components from color_codes.js
-const { MajorColorNames, MinorColorNames, ColorPair } = require('./color_codes');
+const { MajorColorNames, MinorColorNames, ColorPair } = require('./colorCoder');
 
 // Function to get color from pair number
 function getColorFromPairNumber(pairNumber) {
