@@ -1,51 +1,22 @@
-const MajorColorNames = [
-    "WHITE", "RED", "BLACK", "YELLOW", "VIOLET"
-];
-const MinorColorNames = [
-    "BLUE", "ORANGE", "GREEN", "BROWN", "SLATE"
-];
+// Define arrays for major and minor color names
+const MajorColorNames = ["White", "Red", "Black", "Yellow", "Violet"];
+const MinorColorNames = ["Blue", "Orange", "Green", "Brown", "Slate"];
 
-function getColorFromPairNumber(pairNumber) {
-    let minorSize = MajorColorNames.length;
-    let majorSize = MinorColorNames.length;
-    
-    if (pairNumber < 1 || pairNumber > minorSize * majorSize) {
-        throw `Argument PairNumber:${pairNumber} is outside the allowed range`;
+// Define the ColorPair class
+class ColorPair {
+    constructor(majorColor, minorColor) {
+        this.majorColor = majorColor;
+        this.minorColor = minorColor;
     }
-    let zeroBasedPairNumber = pairNumber - 1;
-    let majorIndex = parseInt(zeroBasedPairNumber / minorSize);
-    let minorIndex = parseInt(zeroBasedPairNumber % minorSize);
-    let pair = new (require('./colorPair'))();
-    pair.majorColor = MajorColorNames[majorIndex];
-    pair.minorColor = MinorColorNames[minorIndex];
-    return pair;
+
+    toString() {
+        return `${this.majorColor} - ${this.minorColor}`;
+    }
 }
 
-function getPairNumberFromColor(pair) {
-    let majorIndex = -1;
-    for (let i = 0; i < MajorColorNames.length; i++) {
-        if (MajorColorNames[i] == pair.majorColor) {
-            majorIndex = i;
-            break;
-        }
-    }
-
-    let minorIndex = -1;
-    for (let i = 0; i < MinorColorNames.length; i++) {
-        if (MinorColorNames[i] == pair.minorColor) {
-            minorIndex = i;
-            break;
-        }
-    }
-    
-    if (majorIndex == -1 || minorIndex == -1) {
-        throw `Unknown Colors:${pair.toString()}`;
-    }
-
-    return (majorIndex * MinorColorNames.length) + (minorIndex + 1);
-}
-
+// Export the constants and the class
 module.exports = {
-    getColorFromPairNumber,
-    getPairNumberFromColor
+    MajorColorNames,
+    MinorColorNames,
+    ColorPair
 };
